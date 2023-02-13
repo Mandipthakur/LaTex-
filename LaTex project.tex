@@ -1,0 +1,579 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		
+		\textbf{BRACHISTOCHRONE THEORY, IT’S SOLUTION AND APPLICATION}
+		
+		\vspace{1.5 cm}
+       A FIRST YEAR PROJECT REPORT
+       
+       \vspace{1 cm}
+       SUBMITTED IN PARTIAL FULFILLMENT OF THE REQUIREMENTS FOR
+       THE DEGREE OF B.Sc. IN COMPUTATIONAL MATHEMATICS
+		
+		\vspace{1cm}
+		BY
+		\vspace{0.5 cm}		
+		\textbf{Mandip Thakur}
+		\vspace{1.5 cm}
+		
+			\includegraphics[width=0.5\linewidth]{C:/Users/ASUS/Downloads/ku}
+	
+	    \vspace{2.5 cm}
+	  	SCHOOL OF SCIENCE \\
+	    KATHMANDU UNIVERSITY\\
+	    DHULIKHEL, NEPAL \\
+	    \vspace{1 cm}
+	    26 Nov, 2022
+	           
+		
+	   \textbf{CERTIFICATION}
+	   \vspace{0.5 cm}
+	   	\\ This project entitled ”BRACHISTOCHRONE THEORY, IT’S SOLUTION AND APPLI-
+		CATION” is carried out under my supervision for the specified entire period satisfactorily, and is hereby certified as a work done by following students\\
+		\vspace{1 cm}
+		Mandip Thakur \\
+		\vspace{0.5 cm}
+		In partial fulfillment of the requirements for the degree of B.Sc. in Computational Mathematics, Department of Natural Sciences, Kathmandu University, Dhulikhel, Nepal.
+		
+		\vspace{1 cm}
+		
+		
+	\end{center}
+     \rule{4 cm}{0.2 pt}
+     \vspace{0.1 cm}
+     \textbf{\\ Dr.Saraswati Acharya \\}
+     \vspace{0.1 cm}
+     Assistant Professor \\
+     \vspace{0.1 cm}
+     Department of Natural Sciences (Mathematics),\\
+     \vspace{0.1 cm}
+     School of Science, Kathmandu University,\\
+     \vspace{0.1 cm}
+     Dhulikhel, Kavre, Nepal\\
+     \vspace{0.1 cm}
+     Date:26 NOV 2022
+\end{titlepage}
+\newpage
+\textbf{APPROVED BY:\\}
+I hereby declare that the candidate qualifies to submit this report of the Engineering
+Project (ENGG-102) to the Department of Natural Sciences. 
+\vspace{3 cm}\\
+\rule{4 cm}{0.2 pt}
+\vspace{0.1 cm}
+\textbf{\\ Prof.Dr.Dil Bahadur Gurung \\}
+\vspace{0.1 cm}
+Head of the Department \\
+\vspace{0.1 cm}
+Department of Natural Sciences (Mathematics),\\
+\vspace{0.1 cm}
+School of Science, Kathmandu University,\\
+\vspace{0.1 cm}
+Dhulikhel, Kavre, Nepal\\
+\vspace{0.1 cm}
+Date:26 NOV 2022
+
+\newpage
+
+
+\centering \textbf{ACKNOWLEDGMENTS\\}
+\begin{flushleft}
+	We would like to express our sincere gratitude towards our supervisor Dr.Saraswati
+	Acharya who constantly motivated us in carrying out this project. It wouldn’t have
+	been possible without her excellent supervision, continuous guidance and academically
+	professional suggestions. Through this project we were able to learn and grow as an individual as well as a group for which we are highly obliged.We would also like to thank the entire faculty,Department of Natural Science, Computational Mathematics for encouraging, supporting and providing us with this opportunity which gave us a broader platform in our studies.Lastly, we are extremely grateful to each and every member for motivating and providing a healthy competitive environment to nurture our project.
+\end{flushleft}
+
+\newpage
+\centering \textbf{ABSTRACT\\}
+\begin{flushleft}
+	In this project we had studied a generalization of the brachistocrone problem by using
+	different solution (i.e.By indirect method by Johann Bernoulli and by using calculus of
+	variation). We have seen that his method can be quickly extended in such a way that
+	it was able to solve other problems in a similar pattern using calculus of variation.In
+	order to prove the equation of the cycloid we have taken an modern approach through
+	geometry. In addition, we had shown the importance of Euler’s formalism for the calculus
+	of variations, making it a handy and useful method for engineering applications.
+\end{flushleft}
+
+\newpage
+\begin{flushleft}
+	\textbf{CERTIFICATION\\}
+	\vspace{0.5 cm}
+	\textbf{ACKNOWLEDGMENTS\\}
+	\vspace{0.5 cm}
+	\textbf{ABSTRACTS\\}
+	\vspace{0.5 cm}
+	\textbf{LISTS OF FIGURES\\}
+	
+\end{flushleft}
+\tableofcontents 
+
+\newpage
+\centering \textbf {CHAPTER 1\\}
+\vspace{1 cm}
+\centering \section {MOTIVATION/INTRODUCTION}
+
+\begin{flushleft}
+	\subsection{Introduction}
+
+	The word Brachistochrone was derived from the Greek word, brachis: which means the
+	path and chronos: shortest time[1]. The Brachistochrone problem seeks to find the curve
+	between two points, 1 and 2, in a vertical plane and not in the same vertical line, along
+	which a particle will slide in the shortest amount of time under the force of gravity and
+	neglecting friction. 
+	Johann Bernoulli purposed the problem in 1696 and solve it by using Fermant’s principle
+	which is known as Johann Bernoulli’s Indirect Method. Solutions were found by Gottfried
+	Wilhelm von Leibniz, Isaac Newton, Guillaume de l’Hopital, Jacob Bernoulli, and Johann
+	Bernoulli himself. All of their answers agreed, although each used different methods of
+	derivation.In 1744, Euler published a work generalizing the work done by the Bernoulli
+	brothers and came up with what is now known as the Euler-Lagrange differential equation
+	(which Lagrange later independently derived) in order to minimize the value of a definite integral over a family of functions, which led to the calculus of variations.Lagrange pro-
+	vided an analytic method to solve the Brachistochrone problem and other problems of its type, and introduced partial derivatives to the equation.
+	
+	The problem was as following:
+	Given two points 1 and 2 in a vertical plane, what is the curve traced out by a point acted on only by gravity, which starts at 1 and reaches 2 in the shortest time.Common sense would tell us that the fastest way to travel from a point 1 to a point 2 in a vertical plane
+	\newpage
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width=0.5\linewidth]{C:/Users/ASUS/Downloads/fig1}
+		\caption{\textit{Brachistochrone Curve}}
+		\includegraphics[width=0.5\linewidth]{C:/Users/ASUS/Downloads/fig2}
+		\caption{\textit{Cusp}}
+	\end{figure}
+	is through a straight line from point 1 to 2. But the actual solution to this problem is a
+	curve called a cycloid which is shown in Figure 1.1.\\
+	\vspace{1 cm}
+	This curves always starts with a cusp as shown in fig 1.2 .
+	
+	\subsection{Motivation}
+	The Brachistochrone problem help to solve the first kind of calculus of variation problem.In physics things like minimal path with respects to diserent variables are calculated by using Brachistochrone theory and it is also used in others geodesics like finding the shortest path over something like the airplane which takes the shortest path to get to their destination.
+	\newpage
+	\subsection{History of Brachistochrone Curve}
+	In 1698 John Bernoulli proposed a challenging problem at Acta Erucutorum to all the
+	geniuses around the world.The problem was ”Given two points A and B in a vertical
+	plane what is the curve traced out by the point acted only by gravity, which starts at A
+	
+	and reaches to point B at shortest time”[2].
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.5\linewidth]{C:/Users/ASUS/Downloads/fig3}
+		\caption{\textit{Galileo approach to Brachistochrone curve.}}
+
+	\end{figure}
+    \\
+    But before that Galileo had already studied that problem in his famous work discourse
+    on two new sciences[3]. His version of problem was first to and a straight line from point
+    A to the vertical line would be at an angle of 45 degree reaching the required vertical line at B.
+    
+    \begin{figure}[h]
+    	\centering
+    	\includegraphics[width=0.5\linewidth]{C:/Users/ASUS/Downloads/fig4}
+    	\caption{\textit{The arc of the circle as a shortest given by Galileo.}}
+    	
+    \end{figure}
+    \newpage 
+    Then he showed that the point will reach B quickest if it moved through two line
+    segment AC and CB where C is the point of the arc of the curve. But in case of
+    Brachiostone he made a error thinking that the path of quickest decent is the arc of a
+    
+    circle. Then the Bernoulli found the right answer.
+    
+    The problem was solved by Bernoulli himself, Newtons, Jake Bernoulli, Gottfried
+    Leibniz, Ehrenfried Walther von Tschirnhaus and Guillaume de l’Hopital.[4]
+    
+    \centering \subsection{Objectives}
+    \centering The objectives of our project are :
+    \begin{enumerate}
+    	\item Specific objectives
+    	\begin{itemize}
+    		\item To learn about the path between two points A and B in a vertical plane in the shortest time.
+    	\end{itemize}
+    		\item General objectives
+    		\begin{itemize}
+    			\item To elucidate the curve between two points A and B in a vertical plane which traces
+    			out the path having the shortest time under the influence of gravity only by keeping the curve independent of the mass of the test body and the local strength of gravity.
+    			\item  To identify solution and application given by the curve in the different fields.
+     \end{enumerate}
+  \begin{center}
+  	 \subsection{Limitations}
+  	 The project was limited to solve two solutions using indirect method by Johann
+  	 Bernoulli and by calculus of variation. Brachistochrone theory also fails to describe the
+  	 the actual path followed by particles in friction. Analytic solution for non-conservative
+  	 velocity is dependent on frictional force which fail to give the ability to describe free-fall and the particle motion in cyclic curve.
+  \end{center} 
+\end{flushleft}
+
+\newpage
+%begin of chapter 2
+\begin{center}
+	\textbf{CHAPTER 2}
+	\section{METHODOLOGY/MODEL \\
+		EQUATION}
+	\vspace{1 cm}
+	\subsection{Theoretical/Conceptual Framework}
+	One of the beauties of mathematics is that old problems never lose their freshness. A
+	noted example is the Brachistochrone problem. The problem is to determine the path
+	down which a particle will slide from a given point to another not directly below in the
+	shortest path. In our first year ENGG 102 project, we research about Brachistochrone
+	theory, it’s solution and application. By taking reference through different websites in
+	the internet we have decided the following method to solve the solution of Brachistochrone.
+	\vspace{0.5 cm}
+	\begin{itemize}
+		\item By indirect method by Johann Bernoulli.
+		\item By using calculus of variation.
+	\end{itemize}
+    \subsection{Model Equation}
+    \dfrac{sin \theta}{\sqrt{y}} $$ = \textbf{constant}
+    \\This is the Equation dervived from Johann Bernoulli’s Indirect Method. where θ is the
+    angle of incidence. y is the distance between two medium.
+    \vspace{0.5 cm}
+    $$2L = K_{1}($\theta$_{L} - sin$\theta$_{L})
+    
+    \newpage
+    $$-2H=K_{1}(\left 1- cos\theta_{L})\left(2.2)
+    \\
+    This is the equation derived from ccalculus of variation. Which was figuratively
+    represented from point A and B with co-ordinates A(0, h) and B(L, 0).
+\end{center}
+
+\newpage
+%chapter 3 begins
+
+\begin{center}
+	\textbf{CHAPTER 3}
+	\section{RESULTS AND DISCUSSIONS}
+	\vspace{1 cm}
+	\begin{flushleft}
+		
+	
+	
+	\subsection{Discussion}
+		\vspace{0.5 cm}
+	\subsubsection{Johann Bernoulli’s Indirect Method:}
+	In 1697 Johann Bernoullis used the Fermant’s Principle to solve the Brachistochrone
+	problem . According to Fermat’s principle, the actual path between two points taken by
+	a beam of light is one that takes the least time. In 1697 Johann Bernoulli used this
+	principle to derive the brachistochrone curve by considering the trajectory of a beam of
+	light in a medium where the speed of light increases following a constant vertical
+	acceleration (that of gravity g).[5] Now according to the conservation of energy,
+	
+	\begin{equation}
+	\frac{1}{2}mv^{2}= mgy
+	\end{equation}
+	where, 
+	\begin{itemize}
+	\item $\frac{1}{2}mv^{2}$ is the kinetic energy of the body.
+	\item $ mgy$ is the potential energy of the body at height ’y’
+	\item $v$ is the velocity that the body has.
+	\end{itemize}
+	 
+	\begin{equation}\label{equation2}
+	$$v=\sqrt{2gy} $$
+	\end{equation}
+	\begin{equation}\label{equation3}
+
+	$$v\alpha\sqrt{y}$$
+\end{equation}
+
+    from the top, let us consider a glass of layers materials having velocity v1,v2,v3,...,vn and
+    y1,y2,y3,...,yn be the distance of the material from the top. Now, from equation(\ref{equation3})
+    \end{flushleft
+	
+	\newpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\linewidth]{../../Downloads/fig5}
+		\caption{\textit{A glass medium where the speed of light increases following a constant vertical acceleration.}}
+		have,
+		\vspace{0.5 cm}
+		
+	\end{figure}
+      \begin{equation}
+     	$$v_{1}=\sqrt{y_{1}}$$
+      \end{equation}
+  \begin{equation}
+  	$$v_{2}=\sqrt{y_{2}}$$
+  \end{equation}
+\begin{equation}
+	$$v_{3}=\sqrt{y_{3}}$$ \\
+\end{equation}
+	. . . . . .
+	\begin{equation}
+		$$v_{n}=\sqrt{y_{n}}$$
+	\end{equation}
+\vspace{0.5 cm}
+\\Principally there is infinite layers and the change is continuous. Now, According to
+Snell’s law,
+\begin{equation}
+	\dfrac{sin \theta_{1}}{v_{1}} = \dfrac{sin \theta_{2}}{v_{2}} =\dfrac{sin \theta_{3}}{v_{3}} . . . = 	\dfrac{sin \theta_{n}}{v_{n}} = constant
+\end{equation}
+where $\theta$3 and $\theta$2 are the angle made by the incident ray and the refracted ray with the
+normal. Therefore,
+
+\begin{equation}
+	\dfrac{sin \theta_{2}}{\sqrt{y_{2}}} = \dfrac{sin \theta_{3}}{\sqrt{y_{2}}}  = constant
+	\end{equation}
+Johann concluded that ,the sin of an angle between the tangent line at a point of the
+\newpage
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig6}
+	\caption{The incident and refraction light for each medium of figure 3.1}
+	\label{fig:fig6}
+\end{figure}
+minimizing curve and the vertical line(distance between that point and the start of the
+curve) is a constant independent of the point chosen.
+\begin{equation}
+ $i.e$\dfrac{sin\theta}{\sqrt{y}} =\textbf{constant}
+\end{equation}
+\vspace{0.5 cm}
+\\ This above equation is the differential equation of Cycloid. Johann indirect method doesn’t show how the above equation is the differential equation of the cycloid. Hence, the following geometrical modern method is used to prove the above differential equation of cycloid.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig7}
+	\caption{The geometric cycloid curve formed by a circle having diameter D.}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig8}
+	\caption{An arbitrary point P which joins the circle and the cycloid is taken.}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig9}
+	\caption{An arbitrary point C is taken between circle and the horizontal axis.}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig10}
+	\caption{A distance is taken between C and P and it is oscillated in the right side.}
+	
+\end{figure}
+\newpage
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig11}
+	\caption{The same process as in figure 3.6 is repeated in the left side. The point C is called the instantaneous center of rotation.}
+	\vspace{2 cm}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig12}
+	\caption{Point C and P and joined to form a normal to the curve given by oscillating
+		instantaneous center of rotation.}
+	\vspace{1 cm}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig13}
+	\caption{A tangent is drawn at point P.}
+\end{figure}
+\newpage
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig14}
+		\vspace{1 cm}
+	\caption{A diameter is drawn perpendicular from point C joining the end of the tangent at
+		the arc of the circle.}
+	\vspace{2 cm}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig15}
+		\vspace{1 cm}
+	\caption{Let us consider an angle $\theta$ in the given triangle}
+	
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\linewidth]{../../Downloads/fig16}
+    \vspace{1 cm}
+    \caption{Now, the angle between CP and horizontal axis is also $\theta$.}
+    \vspace{2 cm}
+    \includegraphics[width=0.7\linewidth]{../../Downloads/fig17}
+    \vspace{1 cm}
+    \caption{A perpendicular line is drawn between point P and the horizontal axis.}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig18}
+	\vspace{1 cm}
+	\caption{From Pythagoras theorem we know that PC = Dsin \theta}
+	\vspace{2 cm}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig19}
+	\vspace{1 cm}
+	\caption{Again using Pythagoras theorem we know that the line between P and horizontal
+		axis is Dsin^{2}$\theta$.}
+\end{figure}
+\newpage
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig20}
+	\vspace{1 cm}
+	\caption{The distance between P and horizontal line is y (the thickness of the medium)}
+	\vspace{2 cm}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig21}
+	\vspace{1 cm}
+	\caption{Solving the relation between y and Dsin^{2}$\theta$}
+\end{figure}
+\newpage
+    \begin{figure}[h]
+     	\centering
+	    \includegraphics[width=0.7\linewidth]{../../Downloads/fig22}
+	     \vspace{1 cm}
+      	\caption{Solving the relation between y and Dsin^{2}$\theta$}
+     	\vspace{2 cm}
+    	\includegraphics[width=0.7\linewidth]{../../Downloads/fig23}
+	   \vspace{1 cm}
+	   \caption{Solving the relation between y and Dsin^{2}$\theta$ and considering the value D(diameter to be constant for a particular cycloid.}
+	   \textbf{\\Hence the differential equation of cycloid was obtained}
+
+	
+    \end{figure}
+\newpage
+\subsubsection{Calculus of variation method}
+Consider there is two points A and B with co-ordinates A($\theta$, h) and B( L, $\theta$).
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig24}
+	\caption{two points A and B with co-ordinates A($\theta$, h) and B(L, $\theta$)}
+	\label{fig:fig24}
+\end{figure}
+We have to find the path $$y = f(x)$$ connecting A and B which minimizes the \textbf{Time
+Traveled} from A to B under the gravitational field.
+Minimize $$T= \int_A^B dt , $$with respect to $$y=f(x)$$
+But,\\
+$$dt\dfrac{ds}{V(x,y)} \\
+From \textbf{Pythagorean theorem} or distance formula,
+$$ds=\sqrt{dx^{2}+dy^{2}}$$
+$$ds=\sqrt{1+(\dfrac{dy}{dx})^{2}}}$$
+As the body goes from point A to point B the potential energy is converted to kinetic
+energy.so,by applying law of conservation of energy.
+
+$$mgh=mgy+(\dfrac{1}{2})mv^{2}
+\newpage
+(assuming there is no heat loss)
+$$v=\sqrt{2g(h-y}$$
+Applying the value of v and ds in the equation (1)
+
+$$T=\int_A^B\dfrac{\sqrt{1+(\dfrac{dy}{dx})^{2}}}{\sqrt{2g(h-y)}}$$
+
+We have to find the function $y = f(x)$ such that T is minimized and in order to
+minimized T we must find the function $y = f(x)$ when T is stationary.
+\\For this we apply\textbf{ Beltrami Identity}.
+$$\sqrt{\dfrac{1+y^'2}{2g(h-y)}} -\dfrac{y^'2}{{\sqrt{(1+y^'2)}(2g(h-y))}} = C $$
+Multiplying both side by $$\sqrt{2g(h − y)} \ and  \sqrt{1+y^'2}} $$  \
+ we get,
+The \textbf{Beltrami identity} is a short version of Euler-Lagrange equation in the calculus of
+variation.\\
+$$F-{y^'}\dfrac{df}{dy^'}= c$$
+where c is a constant
+
+\vspace{0.5 cm}
+$$ 1+y{^'2}-{y^'2}=C\sqrt{{(1+y^{'2})}(2g(h-y)} \\
+1 =C \sqrt{{(1+y^{'2})}(2g(h-y)} \\
+\vspace{0.5 cm}
+Squaring both side, \\
+\vspace{0.5 cm}
+1={C^{2}}{(1+y^{'2})}(2g(h-y) \\
+{(1+y^{'2})}(h-y)=\dfrac{1}{{C{^2}}2g} \\
+{(1+y^{'2})}(h-y)= C_{1} \\
+\vspace{0.5 cm}
+where, C_{1}=\dfrac{1}{{C{^2}}2g}}\\
+{(h-y)}+ y^{'2}{}(h-y)}= C_{1}\\
+ y^{'2}{}(h-y)}=C_{1}-{(h-y)}$$
+
+
+\newpage
+$$y^{'2}=\dfrac{C_{1}-(h-y)}{h-y}\\
+y^{'2}=\sqrt{{\dfrac{C_{1}-(h-y)}{h-y}}} \\
+\sqrt{{\dfrac{C_{1}-(h-y)}{h-y}}} =\dfrac{dy}{dx} \\
+dx=\sqrt{{\frac{h-y}{C_{1}-(h-y)}}} dy \\
+Now integrating both side, \\
+x= \int\sqrt{{\frac{h-y}{C_{1}-(h-y)}}} dy \\
+substituting \, put y=h-C_{1}sin^{2}\dfrac{\theta}{2} we get, \\
+x={ \dfrac{-C_{1}}{2}}{(\theta- sin\theta)+K_{2}} \\
+x={ \dfrac{-K_{1}}{2}}{(\theta- sin\theta)+K_{2}} \\
+(-C_{1}=K_{1}) Also \\
+y= h+ {\dfrac{K_{1}}{2}}{(1-cos\theta)} \\
+since, y= h +K_{1}{sin^{2}\dfrac{\theta}{2}}\rightarrow y=h+{\dfrac{K_{1}}{2}}{(1-cos\theta)}\\
+when y=h, \rightarrow\theta=0 \\
+Therefore, x= 0\rightarrow K_{2}=0 \\
+Again, \\
+when x=L, y=0 \rightarrow \theta=\theta_{L}\\
+then, We get the following equation,
+2L=K_{1}{(\theta_{L}-sin\theta_{L})} \\
+-2h=K_{1}{(1-cos\theta_{L})}\\
+we can obtain the value of k2 by solving the equation (1) and (2) in the term of h and l
+Therefore,the\textbf{ Brachistochrone} is given by the following parametric equations. \\
+x={\dfrac{K_{1}}{2}}(\theta-sin\theta)\\
+y=h+{\dfrac{K_{1}}{2}}(1-cos\theta)\\
+which represents the equation of \textbf{cycloids}\\
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig25}
+	\caption{The curve of quickest descend between two points A and B with co-ordinates
+		A(\theta, h) and B(L, \theta)}
+\end{figure}
+
+
+\subsection{Result}
+The above solution gave rise to the conclusion that the solution of the Brachistoshrone problem is infact an inverted cycloid starting with the cusp. Both the methods satisfied the equation of the cycloid. In the indirect method the differential equation of the cycloid was derived. $$i.e. \frac{sin\theta}{\sqrt{y}}= \textbf{constant}$$ This equation was further proved to be a cycloid by using the geometrical approach to differential cycloid. In the calculus of
+variation the parametric equation of the cycloid was given\\ $$2L = K1(\theta_{L} − sin $\theta$_{L}} −2h = K1(1 − cos\theta_{L)$$\\
+Which was figuratively represented from point A and B with co-ordinates A(0, h) and B(L, 0).
+\end{center}
+
+
+\newpage
+\begin{center}
+   \textbf{ \textbf{CHAPTER 4}}
+    \vspace{1.5 cm}
+    \section{Application}
+     \vspace{1.5 cm}
+    \subsection{In Physics}
+    The importance brachistochrone is not in but problem itself.But it led to the
+    development of calculus of variation which became an important branch of math and
+    had innumerable application in physics.And the calculus of variation is used to find the shortest path with respect to any matter.
+    \subsection{In Electrical Engineering:}
+    Also the calculation of variation is used by electrical engineer in the foundation of optimal control.
+    \subsection{In Mechanical Engineering:}
+    It also has his application to mechanics via stationary action principle.
+    \subsection{In Pendulum and Skating Path:}
+   The brachistochrone curve was also used to made the gear of pendulum. Another
+   application is in the ramp used by the skater on the park is based on Brachistochrone curve.
+   \newpage
+   \begin{figure}
+   	\centering
+   	\includegraphics[width=0.7\linewidth]{../../Downloads/fig26}
+   	\vspace{1 cm}
+   	\caption{\textbf{In physics}: The efficient way from one house to the river and grandma’s
+   		house.}
+   	\label{fig:fig26}
+   	\vspace{2.5 cm}
+   		\includegraphics[width=0.7\linewidth]{../../Downloads/fig27}
+   			\vspace{1 cm}
+   	\caption{\textbf{In Electrical Engineering}: A graph of time versus money of an introduction to optimal control theory used in the product’s of amazon}
+   \end{figure}
+   \newpage
+   \begin{figure}
+   	\centering
+   	\includegraphics[width=0.7\linewidth]{../../Downloads/fig28}
+   	\vspace{1 cm}
+   	\caption{\textbf{In Mechanical Engineering:} A graph of action versus motion used in stationary action principle.}
+   
+   
+    \end{figure}
+    \begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig29}
+	\vspace{1 cm}
+	\caption{\textbf{In Mechanical Engineering:} A graph of action versus motion used in stationary action principle.}
+	\includegraphics[width=0.7\linewidth]{../../Downloads/fig30}
+	\vspace{1 cm}
+	\caption{\textbf{In Mechanical Engineering:} A graph of action versus motion used in stationary action principle.}
+	
+	
+ \end{figure}
+\end{center}
+\end{document}
